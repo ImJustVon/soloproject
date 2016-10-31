@@ -4,6 +4,7 @@ const User = require('../models/user');
 
 exports.setup = function () {
   // passport configuration
+  console.log('In setup.js');
 
   // when someone asks for the 'local' strategy,
   // use the following information from the request

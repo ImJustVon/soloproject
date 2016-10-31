@@ -4,7 +4,7 @@ const connection = require('./db/connection');
 const path = require('path');
 const login = require('./routes/login');
 const register = require('./routes/register');
-// const auth = require('./auth/setup');
+const auth = require('./auth/setup');
 const passport = require('passport');
 const session = require('express-session');
 
@@ -21,8 +21,7 @@ const sessionConfig = {
   },
 };
 
-
-// auth.setup();
+auth.setup();
 
 const app = express();
 

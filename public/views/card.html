@@ -1,0 +1,16 @@
+<form>
+    <form>
+        Photo:
+        <input type="file" ngf-select ng-model="card.img" name="file"
+               accept="image/*" ngf-max-size="2MB" required
+               ngf-model-invalid="errorFile">
+        <i ng-show="myForm.file.$error.required">*required</i><br>
+        <i ng-show="myForm.file.$error.maxSize">File too large
+            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <img ng-show="myForm.file.$valid" ngf-thumbnail="card.img" class="thumb"> <button ng-click="picFile = null" ng-show="card.img">Remove</button>
+        <button ng-disabled="!myForm.$valid"
+                ng-click="">Submit</button>
+        <span ng-show="picFile.result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    </form>
+</form>

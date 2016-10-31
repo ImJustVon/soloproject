@@ -8,6 +8,9 @@ angular.module('crankSistersApp').config(function ($routeProvider, $locationProv
   }).when('/register', {
     templateUrl: 'views/register.html',
     controller: 'RegisterController as register',
+  }).when('/card', {
+    templateUrl: 'views/card.html',
+    controller: 'CardController as card',
   }).otherwise({
     templateUrl: 'views/login.html',
     controller: 'LoginController as login',
