@@ -4,5 +4,13 @@ angular.module('crankSistersApp')
 function CardController($http, $location) {
   console.log('CardController loaded');
   var ctrl = this;
-  console.log(ctrl.img);
+  ctrl.check = function () {
+    console.log(ctrl.img);
+  };
+
+  ctrl.postCard = function () {
+    $http.post('/card', {
+      file: ctrl.img,
+    });
+  };
 }
