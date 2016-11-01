@@ -17,8 +17,9 @@ function CardController($http, $location, teamsHelp) {
   };
   //posts the card object to the server with the file object embeded
   ctrl.postCard = function () {
+    console.log(ctrl.img);
     $http.post('/card', {
-      file: ctrl.img,
+      picture: ctrl.img,
     });
   };
 }

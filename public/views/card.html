@@ -1,6 +1,6 @@
-<form ng-init="card.getTeams()">
+<form ng-init="card.getTeams()" enctype="multipart/form-data">
 
-  <input type="file" ngf-select ng-model="card.img" name="file" ngf-pattern="'image/*'"
+  <input type="file" ngf-select ng-model="card.img" name="picture" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
     ngf-resize="{width: 100, height: 100}" />
     <select name="teams">
@@ -8,6 +8,6 @@
         {{team.team}}
       </option>
     </select>
-    <button type="submit" ng-click="card.check()">Submit</button>
+    <button type="submit" ng-click="card.postCard()">Submit</button>
     </form>
 </form>
