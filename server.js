@@ -7,6 +7,8 @@ const register = require('./routes/register');
 const auth = require('./auth/setup');
 const passport = require('passport');
 const session = require('express-session');
+const aws = require('aws');
+const teams = require('./routes/teams');
 
 const user = require('./models/user');
 
@@ -33,6 +35,7 @@ app.use(passport.session());
 
 app.use('/login', login);
 app.use('/register', register);
+app.use('/teams', teams);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));

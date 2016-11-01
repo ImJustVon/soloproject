@@ -5,6 +5,7 @@ function RegisterController($http, $location) {
   console.log('RegisterController loaded');
   var ctrl = this;
 
+  //registers user and saves them in the users table
   ctrl.register = function () {
     console.log('registering new user');
     $http.post('/register', {
