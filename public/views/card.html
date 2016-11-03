@@ -1,17 +1,17 @@
 <form class="noprint" ng-init="card.getTeams()" enctype="multipart/form-data">
-    <form ng-submit="submit()">
-      <legend>Create your trading card!</legend>
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" ng-model="card.upload.name" required/>
-      <label for="file">File:</label>
-      <input type="file" name="file" id="file" ng-model="card.upload.file" ngf-select ngf-max-size="25MB" filepreview="filepreview" required/>
+
+    <legend>Create your trading card!</legend>
+    <label class="control-label" for="name">Name:</label>
+    <input type="text" name="name" id="name" ng-model="card.upload.name" class="form-control" required/>
+    <label class="control-label" for="file">File:</label>
+    <input type="file" name="file" id="file" ng-model="card.upload.file" ngf-select ngf-max-size="25MB" class="form-control" required/>
     <div class="form-group">
-      <select ng-model="card.upload.team">
+        <select class="form-control" ng-model="card.upload.team">
         <option ng-repeat="team in card.teamsList track by $index" ng-value="{{team.team}}">
           {{team.team}}
         </option>
       </select>
-      <select ng-model="card.upload.catagory">
+        <select class="form-control" ng-model="card.upload.catagory">
         <option ng-value="Catagory1">
           Catagory 1
         </option>
@@ -21,12 +21,12 @@
     </select>
     </div>
     <div class="form-group">
-      <label for="color1">Primary Color</label>
-      <select name="color1" ng-model="card.upload.color1">
+        <label class="control-label" for="color1">Primary Color</label>
+        <select class="form-control" name="color1" ng-model="card.upload.color1">
         <option ng-value="blue">
           Blue
         </option>
-        <option ng-value="purple">
+        <option class="form-control" ng-value="purple">
           Purple
         </option>
         <option ng-value="red">
@@ -37,8 +37,8 @@
         </option>
       </select>
 
-      <label for="color2">Secondary Color</label>
-      <select name="color2" ng-model="card.upload.color2">
+        <label class="control-label" for="color2">Secondary Color</label>
+        <select class="form-control" name="color2" ng-model="card.upload.color2">
         <option ng-value="blue">
           Blue
         </option>
@@ -54,43 +54,43 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="question1">Question 1: </label>
-      <input name="question1" type="textarea" ng-model="card.upload.question1" required/>
+        <label class="control-label" for="question1">Question 1: </label>
+        <input class="form-control" name="question1" type="textarea" ng-model="card.upload.question1" required/>
 
-      <label for="question1">Question 2: </label>
-      <input name="question1" type="textarea" ng-model="card.upload.question2" required/>
+        <label class="control-label" for="question1">Question 2: </label>
+        <input class="form-control" name="question1" type="textarea" ng-model="card.upload.question2" required/>
 
-      <label for="question1">Question 3: </label>
-      <input name="question1" type="textarea" ng-model="card.upload.question3" required/>
+        <label class="control-label" for="question1">Question 3: </label>
+        <input class="form-control" name="question1" type="textarea" ng-model="card.upload.question3" required/>
     </div>
-        <button type="submit" ng-click="card.postCard()">Submit</button>
-    </form>
+    <button type="submit" ng-click="card.postCard()">Submit</button>
 </form>
-<div class="card-preview">
-  <table>
-    <td>
-      <div class="front">
-        <h1 id="name">{{card.upload.name}}</h1>
-        <h2 id="team">{{card.upload.team}}</h2>
-        <img ngf-thumbnail="card.upload.file" width="200"/>
-        <h3 id="crank-sisters">Crank Sisters</h3>
-      </div>
-    </td>
-    <td>
-      <div class="back">
-        <h2 id="catagory">{{card.upload.catagory}}</h2>
-        <p id="question1">
-          Question 1: {{card.upload.question1}}
-        </p>
-        <p id="question2">
-          Question 2: {{card.upload.question2}}
-        </p>
-        <p id="question3">
-          Question 3: {{card.upload.question3}}
-        </p>
-      </div>
-    </td>
-  </table>
+<button class="btn btn-primary" ng-print print-element-id="card-preview">Print</button>
+<div id="card-preview">
+    <table>
+        <td>
+            <div class="front">
+                <h1 id="name">{{card.upload.name}}</h1>
+                <h2 id="team">{{card.upload.team}}</h2>
+                <img ngf-thumbnail="card.upload.file" width="200" />
+                <h3 id="crank-sisters">Crank Sisters</h3>
+            </div>
+        </td>
+        <td>
+            <div class="back">
+                <h2 id="catagory">{{card.upload.catagory}}</h2>
+                <p id="question1">
+                    Question 1: {{card.upload.question1}}
+                </p>
+                <p id="question2">
+                    Question 2: {{card.upload.question2}}
+                </p>
+                <p id="question3">
+                    Question 3: {{card.upload.question3}}
+                </p>
+            </div>
+        </td>
+    </table>
 
 
 </div>
