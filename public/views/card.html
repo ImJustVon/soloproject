@@ -36,6 +36,7 @@
           Green
         </option>
       </select>
+
       <label for="color2">Secondary Color</label>
       <select name="color2" ng-model="card.upload.color2">
         <option ng-value="blue">
@@ -52,6 +53,18 @@
         </option>
       </select>
     </div>
+    <div class="form-group">
+      <label for="question1">Question 1: </label>
+      <input name="question1" type="textarea" ng-model="card.upload.question1" required/>
+
+      <label for="question1">Question 2: </label>
+      <input name="question1" type="textarea" ng-model="card.upload.question2" required/>
+
+      <label for="question1">Question 3: </label>
+      <input name="question1" type="textarea" ng-model="card.upload.question3" required/>
+    </div>
         <button type="submit" ng-click="card.postCard()">Submit</button>
     </form>
 </form>
+
+<img data-ng-src="data:image/png;base64,{{card.upload.file}}" id="photo-id"/>

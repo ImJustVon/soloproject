@@ -5,10 +5,7 @@ function CardController($http, $location, teamsHelp, Upload) {
   console.log('CardController loaded');
   var ctrl = this;
 
-  ctrl.check = function () {
-    console.log(ctrl.img);
-  };
-
+  //gets the list of teams to be displayed
   ctrl.getTeams = function () {
     teamsHelp.getTeams().then(function (list) {
       console.log('list: ', list);
@@ -17,7 +14,6 @@ function CardController($http, $location, teamsHelp, Upload) {
   };
 
   //posts the card object to the server with the file object embeded
-
   ctrl.postCard = function () {
     Upload.upload({
       url: '/card',
@@ -25,9 +21,4 @@ function CardController($http, $location, teamsHelp, Upload) {
       data: ctrl.upload,
     });
   };
-
-  //   ctrl.postCard = function () {
-  //     console.log(ctrl.file);
-  //     $http.post('/card', { file: ctrl.file });
-  //   };
 }
