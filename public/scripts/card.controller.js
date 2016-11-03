@@ -1,7 +1,7 @@
 angular.module('crankSistersApp')
 .controller('CardController', CardController);
 
-function CardController($http, $location, teamsHelp) {
+function CardController($http, $location, teamsHelp, Upload) {
   console.log('CardController loaded');
   var ctrl = this;
 
@@ -15,11 +15,19 @@ function CardController($http, $location, teamsHelp) {
       ctrl.teamsList = list;
     });
   };
+
   //posts the card object to the server with the file object embeded
+
   ctrl.postCard = function () {
-    console.log(ctrl.img);
-    $http.post('/card', {
-      picture: ctrl.img,
+    Upload.upload({
+      url: '/card',
+      method: 'post',
+      data: ctrl.upload,
     });
   };
+
+  //   ctrl.postCard = function () {
+  //     console.log(ctrl.file);
+  //     $http.post('/card', { file: ctrl.file });
+  //   };
 }

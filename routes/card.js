@@ -1,25 +1,47 @@
 const express = require('express');
 const router = require('express').Router();
 const AWS = require('aws-sdk');
-const multer = require('multer');
 require('dotenv').config({ path: './aws.env' });
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
+var multerS3 = require('multer-s3');
+var path = require('path');
 
+var accessKeyId =  process.env.AWS_ACCESS_KEY;
+var secretAccessKey = process.env.AWS_SECRET_KEY;
+
+AWS.config.update({
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey,
+    region: 'us-west-2',
+  });
 var s3 = new AWS.S3();
 
-router.post('/', function (req, res) {
-    console.log(req.body); // form fields
-    console.log(req.files); // form files
-    res.status(204).end();
-  });
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'soloproject',
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
 
-// var params = {
-//   Bucket: 'soloproject',
-//   Key: process.env.KEY_ID,
-//   Body: req.file,
-// };
-// s3.putObject(params, function (err, data) {
-//   if (err) console.log(err, err.stack);
-//   else console.log(data);
-// });
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString() + path.extname(file.originalname));
+    },
+  }),
+});
+
+/**
+ * Create's the file in the database
+ */
+router.post('/', upload.single('file'), function (req, res, next) {
+  console.log(req.body);
+  console.log(req.file);
+  var newUpload = {
+    name: req.body.name,
+    created: Date.now(),
+    file: req.file,
+  };
+});
 
 module.exports = router;

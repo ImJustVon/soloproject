@@ -11,6 +11,7 @@ const teams = require('./routes/teams');
 const login = require('./routes/login');
 const register = require('./routes/register');
 const card = require('./routes/card');
+
 //setup
 const user = require('./models/user');
 const auth = require('./auth/setup');

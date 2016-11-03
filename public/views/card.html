@@ -1,13 +1,57 @@
 <form ng-init="card.getTeams()" enctype="multipart/form-data">
-
-  <input type="file" ngf-select ng-model="card.img" name="picture" ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-    ngf-resize="{width: 100, height: 100}" />
-    <select name="teams">
-      <option ng-repeat="team in card.teamsList track by $index" value="{{team.team}}">
-        {{team.team}}
-      </option>
+    <form ng-submit="submit()">
+      <legend>Create your trading card!</legend>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" ng-model="card.upload.name" required/>
+      <label for="file">File:</label>
+      <input type="file" name="file" id="file" ng-model="card.upload.file" ngf-select ngf-max-size="25MB" required/>
+    <div class="form-group">
+      <select ng-model="card.upload.team">
+        <option ng-repeat="team in card.teamsList track by $index" ng-value="{{team.team}}">
+          {{team.team}}
+        </option>
+      </select>
+      <select ng-model="card.upload.catagory">
+        <option ng-value="Catagory1">
+          Catagory 1
+        </option>
+        <option ng-value="Catagory2">
+          Catagory 2
+        </option>
     </select>
-    <button type="submit" ng-click="card.postCard()">Submit</button>
+    </div>
+    <div class="form-group">
+      <label for="color1">Primary Color</label>
+      <select name="color1" ng-model="card.upload.color1">
+        <option ng-value="blue">
+          Blue
+        </option>
+        <option ng-value="purple">
+          Purple
+        </option>
+        <option ng-value="red">
+          Red
+        </option>
+        <option ng-value="green">
+          Green
+        </option>
+      </select>
+      <label for="color2">Secondary Color</label>
+      <select name="color2" ng-model="card.upload.color2">
+        <option ng-value="blue">
+          Blue
+        </option>
+        <option ng-value="purple">
+          Purple
+        </option>
+        <option ng-value="red">
+          Red
+        </option>
+        <option ng-value="green">
+          Green
+        </option>
+      </select>
+    </div>
+        <button type="submit" ng-click="card.postCard()">Submit</button>
     </form>
 </form>

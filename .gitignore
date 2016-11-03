@@ -2,3 +2,4 @@ node_modules
 public/vendors
 *.log
 .DS_Store
+aws.env
