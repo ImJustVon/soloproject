@@ -1,4 +1,4 @@
-<form ng-init="card.getTeams()" enctype="multipart/form-data">
+<form class="noprint" ng-init="card.getTeams()" enctype="multipart/form-data">
     <form ng-submit="submit()">
       <legend>Create your trading card!</legend>
       <label for="name">Name:</label>
@@ -66,3 +66,31 @@
         <button type="submit" ng-click="card.postCard()">Submit</button>
     </form>
 </form>
+<div class="card-preview">
+  <table>
+    <td>
+      <div class="front">
+        <h1 id="name">{{card.upload.name}}</h1>
+        <h2 id="team">{{card.upload.team}}</h2>
+        <img ngf-thumbnail="card.upload.file" width="200"/>
+        <h3 id="crank-sisters">Crank Sisters</h3>
+      </div>
+    </td>
+    <td>
+      <div class="back">
+        <h2 id="catagory">{{card.upload.catagory}}</h2>
+        <p id="question1">
+          Question 1: {{card.upload.question1}}
+        </p>
+        <p id="question2">
+          Question 2: {{card.upload.question2}}
+        </p>
+        <p id="question3">
+          Question 3: {{card.upload.question3}}
+        </p>
+      </div>
+    </td>
+  </table>
+
+
+</div>

@@ -1,1 +1,1 @@
-angular.module('crankSistersApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap']);
+angular.module('crankSistersApp', ['ngRoute', 'ngFileUpload']);

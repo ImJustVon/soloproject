@@ -1,7 +1,7 @@
 <h1>Home</h1>
 <ul>
   <li ng-repeat="card in user.allCards">
-    {{card.created}}
+    {{card.created | date:'medium'}}
   </li>
 </ul>
 <button ng-click="user.getCards()">Test</button>
