@@ -11,7 +11,7 @@ function LoginController($http, $location) {
       username: ctrl.username,
       password: ctrl.password,
     }).then(function (response) {
-      $location.path('/card');
+      $location.path('/user');
       console.log(response);
     }, function (error) {
 

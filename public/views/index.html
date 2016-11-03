@@ -6,15 +6,20 @@
         <title>Crank Sisters Trading Card</title>
           <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
 
+        <!--Vendors-->
         <script src="vendors/angular.min.js" charset="utf-8"></script>
         <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+        <script src="vendors/ng-file-upload.min.js"></script>
 
+        <!--Controllers-->
         <script src="scripts/app.module.js" charset="utf-8"></script>
         <script src="scripts/login.controller.js" charset="utf-8"></script>
         <script src="scripts/register.controller.js" charset="utf-8"></script>
         <script src="scripts/card.controller.js" charset="utf-8"></script>
+        <script src="scripts/user.controller.js" charset="utf-8"></script>
+
+        <!--Config and Services-->
         <script src="scripts/app.config.js" charset="utf-8"></script>
-        <script src="vendors/ng-file-upload.min.js"></script>
         <script src="scripts/teams.service.js" charset="utf-8"></script>
 
 
@@ -22,6 +27,11 @@
     </head>
 
     <body class="container">
+      <nav>
+        <a href="/register">register</a>
+        <a href="/card">card</a>
+        <a href="/user">user</a>
+      </nav>
         <ng-view></ng-view>
     </body>
 

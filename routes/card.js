@@ -62,4 +62,29 @@ router.post('/', uploads3.single('file'), function (req, res, next) {
   });
 });
 
+//gets a list of all cards for a given user
+router.get('/all', function (req, res, next) {
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Cant connect: ', err);
+        res.sendStatus(500);
+      }
+
+      client.query('Select * FROM cards WHERE user_id=$1;', [req.user.id],
+    function (err, result) {
+        if (err) {
+          console.log('error querying: ', err);
+          return res.sendStatus(500);
+        }
+
+        console.log(result.rows);
+        res.send(result.rows);
+      });
+    } finally {
+      done();
+    }
+  });
+});
+
 module.exports = router;

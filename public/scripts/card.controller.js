@@ -15,6 +15,7 @@ function CardController($http, $location, teamsHelp, Upload) {
 
   //posts the card object to the server with the file object embeded
   ctrl.postCard = function () {
+    console.log(ctrl.upload.file);
     Upload.upload({
       url: '/card',
       method: 'post',

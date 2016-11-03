@@ -4,7 +4,7 @@
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" ng-model="card.upload.name" required/>
       <label for="file">File:</label>
-      <input type="file" name="file" id="file" ng-model="card.upload.file" ngf-select ngf-max-size="25MB" required/>
+      <input type="file" name="file" id="file" ng-model="card.upload.file" ngf-select ngf-max-size="25MB" filepreview="filepreview" required/>
     <div class="form-group">
       <select ng-model="card.upload.team">
         <option ng-repeat="team in card.teamsList track by $index" ng-value="{{team.team}}">
@@ -66,5 +66,3 @@
         <button type="submit" ng-click="card.postCard()">Submit</button>
     </form>
 </form>
-
-<img data-ng-src="data:image/png;base64,{{card.upload.file}}" id="photo-id"/>
