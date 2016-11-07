@@ -87,4 +87,52 @@ router.get('/all', function (req, res, next) {
   });
 });
 
+router.get('/:id', function (req, res, next) {
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Cant connect: ', err);
+        res.sendStatus(500);
+      }
+
+      client.query('Select * FROM cards WHERE id=$1;', [req.params.id],
+    function (err, result) {
+        if (err) {
+          console.log('error querying: ', err);
+          return res.sendStatus(500);
+        }
+
+        console.log(result.rows);
+        res.send(result.rows);
+      });
+    } finally {
+      done();
+    }
+  });
+});
+
+//deletes entries from database
+router.delete('/:id', function (req, res, next) {
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Cant connect: ', err);
+        res.sendStatus(500);
+      }
+
+      client.query('DELETE FROM cards WHERE id=$1;', [req.params.id],
+    function (err, result) {
+        if (err) {
+          console.log('error querying: ', err);
+          return res.sendStatus(500);
+        }
+
+        res.sendStatus(204);
+      });
+    } finally {
+      done();
+    }
+  });
+});
+
 module.exports = router;

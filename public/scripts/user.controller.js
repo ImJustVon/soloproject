@@ -14,4 +14,23 @@ function UserController($http) {
       console.log(ctrl.allCards);
     });
   };
+
+  //deletes card from database
+  ctrl.deleteCard = function (id) {
+    $http.delete('/card/' + id).then(function (response) {
+      console.log(response);
+    });
+  };
+
+  //gets sepecific card from database
+  ctrl.getCard = function (id) {
+    console.log(id);
+    $http.get('/card/' + id).then(function (response) {
+      ctrl.card = response.data[0];
+      // $http.get('/card/picture/' + ctrl.card.image_name).then(function (response) {
+      //
+      // })
+      console.log(ctrl.card);
+    });
+  };
 }
