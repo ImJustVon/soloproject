@@ -47,7 +47,7 @@ router.post('/', uploads3.single('file'), function (req, res, next) {
         res.sendStatus(500);
       }
 
-      client.query('INSERT INTO cards (name, image_name, team, color1, color2, catagory, question1, question2, question3, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', [req.body.name, req.file.key, req.body.team, req.body.color1, req.body.color2, req.body.catagory, req.body.question1, req.body.question2, req.body.question3, req.user.id],
+      client.query('INSERT INTO cards (name, image_name, team, color1, color2, category, question1, question2, question3, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', [req.body.name, req.file.key, req.body.team, req.body.color1, req.body.color2, req.body.category, req.body.question1, req.body.question2, req.body.question3, req.user.id],
     function (err) {
         if (err) {
           console.log('Error inserting into db', err);

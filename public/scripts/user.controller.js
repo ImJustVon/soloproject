@@ -11,10 +11,7 @@ function UserController($http) {
     console.log('Clicked');
     $http.get('/card/all').then(function (response) {
       ctrl.allCards = response.data;
-
-      // for(var i = 0, i < ctrl.allCards.length, i++) {
-      //   ctrl.allCards[i].created = ctrl.allCards[i].created.toDateString();
-      // }
+      console.log(ctrl.allCards);
     });
   };
 }
