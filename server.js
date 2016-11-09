@@ -11,6 +11,7 @@ const teams = require('./routes/teams');
 const login = require('./routes/login');
 const register = require('./routes/register');
 const card = require('./routes/card');
+const logout = require('./routes/logout');
 
 //setup
 const user = require('./models/user');
@@ -44,6 +45,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/teams', teams);
 app.use('/card', card);
+app.use('/logout', logout);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));

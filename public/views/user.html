@@ -1,12 +1,14 @@
-<h1 ng-init="user.getCards()">Home</h1>
-<ul>
+<button class="btn btn-warning" ng-click="user.logout()">Logout</button>
+<h1 ng-init="user.getCards()" class="noprint">Home</h1>
+<ul class="noprint">
   <li ng-repeat="card in user.allCards">
-    {{card.created | date:'fullDate'}} <button class="btn btn-primary" ng-click="user.getCard(user.allCards[$index].id)">View</button>
-    <button class="btn btn-danger" ng-click="user.deleteCard(user.allCards[$index].id)">Delete</button>
+    {{card.created | date:'fullDate'}} <button class="noprint btn btn-primary" ng-click="user.getCard(user.allCards[$index].id)">View</button>
+    <button class="btn btn-danger noprint" ng-click="user.deleteCard(user.allCards[$index].id)">Delete</button>
   </li>
 </ul>
-<h2>Preview</h2>
-<div id="card-preview">
+<a href="/card"><button class="norint btn btn-success">Make a new card</button></a>
+<h2 class="noprint">Preview</h2>
+<div id="card-preview" class="well">
     <table ng-style="{'color': user.card.color2}">
       <tr>
 
@@ -15,7 +17,7 @@
             <div>
                 <h1 id="name">{{user.card.name}}</h1>
                 <h2 id="team">{{user.card.team}}</h2>
-                <img ngf-thumbnail="user.card.file" width="200" />
+                <img ng-src="{{user.url}}" width="240" />
                 <h3 id="crank-sisters">Crank Sisters</h3>
             </div>
         </td>
@@ -37,7 +39,7 @@
             <div class="front">
                 <h1 id="name">{{user.card.name}}</h1>
                 <h2 id="team">{{user.card.team}}</h2>
-                <img ngf-thumbnail="user.card.file" width="200" />
+                <img ng-src="{{user.url}}" width="240" />
                 <h3 id="crank-sisters">Crank Sisters</h3>
             </div>
         </td>
@@ -61,3 +63,4 @@
 
 
 </div>
+<button class="btn btn-primary noprint" ng-print print-element-id="card-preview">Print</button>

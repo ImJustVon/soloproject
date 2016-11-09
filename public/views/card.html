@@ -47,7 +47,7 @@
         <label class="control-label" for="question1">Question 3: </label>
         <input type="text" class="form-control" name="question1" maxlength="65" ng-model="card.upload.question3" required/>
     </div>
-    <button type="submit" ng-click="card.postCard()">Submit</button>
+    <a href="/user"><button type="submit" class="btn btn-success" ng-click="card.postCard()">Submit</button></a>
 </form>
 <button class="btn btn-primary noprint" ng-print print-element-id="card-preview">Print</button>
 

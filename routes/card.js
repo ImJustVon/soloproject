@@ -62,6 +62,19 @@ router.post('/', uploads3.single('file'), function (req, res, next) {
   });
 });
 
+//gets a picture from the s3 server
+router.get('/picture/:id', function (req, res) {
+  console.log('id: ', req.params.id);
+  var params = {
+    Bucket: 'soloproject',
+    Key: req.params.id,
+  };
+  s3.getSignedUrl('getObject', params, function (err, url) {
+    if (err) console.log(err, err.stack);
+    else res.send(url);
+  });
+});
+
 //gets a list of all cards for a given user
 router.get('/all', function (req, res, next) {
   pool.connect(function (err, client, done) {
@@ -87,6 +100,7 @@ router.get('/all', function (req, res, next) {
   });
 });
 
+//gets specific card from the database
 router.get('/:id', function (req, res, next) {
   pool.connect(function (err, client, done) {
     try {
