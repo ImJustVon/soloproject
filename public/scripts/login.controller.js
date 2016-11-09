@@ -11,8 +11,12 @@ function LoginController($http, $location) {
       username: ctrl.username,
       password: ctrl.password,
     }).then(function (response) {
-      $location.path('/user');
       console.log(response);
+      if (response.data.group === 'admin') {
+        $location.path('/admin');
+      } else {
+        $location.path('/user');
+      }
     }, function (error) {
 
       console.log('error loggin in', error);

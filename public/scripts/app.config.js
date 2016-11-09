@@ -11,6 +11,9 @@ angular.module('crankSistersApp').config(function ($routeProvider, $locationProv
   }).when('/user', {
     templateUrl: 'views/user.html',
     controller: 'UserController as user',
+  }).when('/admin', {
+    templateUrl: 'views/admin.html',
+    controller: 'AdminController as admin',
   }).otherwise({
     templateUrl: 'views/login.html',
     controller: 'LoginController as login',

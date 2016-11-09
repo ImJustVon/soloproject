@@ -149,4 +149,29 @@ router.delete('/:id', function (req, res, next) {
   });
 });
 
+//gets all cards from the database
+router.get('/all', function (req, res, next) {
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Cant connect: ', err);
+        res.sendStatus(500);
+      }
+
+      client.query('Select * FROM cards;',
+    function (err, result) {
+        if (err) {
+          console.log('error querying: ', err);
+          return res.sendStatus(500);
+        }
+
+        console.log(result.rows);
+        res.send(result.rows);
+      });
+    } finally {
+      done();
+    }
+  });
+});
+
 module.exports = router;

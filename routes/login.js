@@ -3,7 +3,9 @@ const passport = require('passport');
 
 router.post('/', passport.authenticate('local'), function (req, res) {
   console.log('At login.js');
-  res.sendStatus(200);
+  res.send({
+    group: req.user.group,
+  });
 });
 
 module.exports = router;
