@@ -5,6 +5,7 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const aws = require('aws');
+const favicon = require('serve-favicon');
 
 //routes
 const teams = require('./routes/teams');
@@ -54,6 +55,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use('/login', login);
 app.use('/register', register);
 app.use('/teams', teams);
@@ -67,10 +69,6 @@ app.get('/', function (req, res) {
 
 // everything beyond this point must be authenticated
 app.use(ensureAuthenticated);
-
-app.get('/supersecret', function (req, res) {
-  res.send('the password is banana');
-});
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
