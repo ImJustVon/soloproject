@@ -8,6 +8,18 @@ var multerS3 = require('multer-s3');
 var path = require('path');
 const pool = require('../db/connection');
 
+var needsGroup = function (group) {
+  return [
+    passport.authenticate('local'),
+    function (req, res, next) {
+      if (req.user && req.user.group === group)
+        next();
+      else
+        res.send(401, 'Unauthorized');
+    },
+  ];
+};
+
 var accessKeyId =  process.env.AWS_ACCESS_KEY;
 var secretAccessKey = process.env.AWS_SECRET_KEY;
 
@@ -142,31 +154,6 @@ router.delete('/:id', function (req, res, next) {
         }
 
         res.sendStatus(204);
-      });
-    } finally {
-      done();
-    }
-  });
-});
-
-//gets all cards from the database
-router.get('/all', function (req, res, next) {
-  pool.connect(function (err, client, done) {
-    try {
-      if (err) {
-        console.log('Cant connect: ', err);
-        res.sendStatus(500);
-      }
-
-      client.query('Select * FROM cards;',
-    function (err, result) {
-        if (err) {
-          console.log('error querying: ', err);
-          return res.sendStatus(500);
-        }
-
-        console.log(result.rows);
-        res.send(result.rows);
       });
     } finally {
       done();

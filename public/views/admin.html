@@ -1,6 +1,37 @@
-<h1>Admin</h1>
-<ul>
-  <li ng-repeat="card in admin.cardArray">
-    {{card.name}}
+<h1 ng-init="admin.getAllUsers()">Admin</h1>
+<h2>There are a total of {{admin.count}} users</h2>
+<ul ng-init="admin.getCards()">
+  <li ng-repeat="card in admin.cardsArray">
+    {{card.name}} {{card.created | date:'fullDate'}}<button class="noprint btn btn-primary" ng-click="admin.viewCard(admin.cardsArray[$index].id)">View</button>
+    <button class="btn btn-danger noprint" ng-click="admin.deleteCard(admin.cardsArray[$index].id)">Delete</button>
   </li>
 </ul>
+<div id="card-preview" class="well">
+    <table ng-style="{'color': admin.card.color2}">
+      <tr>
+
+
+        <td  class="front" ng-style="{'background-color': admin.card.color1, 'width': '240px', 'height': '288px'}">
+            <div>
+                <h1 id="name">{{admin.card.name}}</h1>
+                <h2 id="team">{{admin.card.team}}</h2>
+                <img ng-src="{{admin.url}}" width="240" />
+                <h3 id="crank-sisters">Crank Sisters</h3>
+            </div>
+        </td>
+        <td class="back" ng-style="{'background-color': admin.card.color1, 'width': '240px', 'height': '288px'}">
+            <div>
+                <h2 id="category">{{admin.card.category}}</h2>
+                <p id="question1">
+                    Question 1: {{admin.card.question1}}
+                </p>
+                <p id="question2">
+                    Question 2: {{admin.card.question2}}
+                </p>
+                <p id="question3">
+                    Question 3: {{admin.card.question3}}
+                </p>
+            </div>
+        </td>
+      </tr>
+    </table>
