@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -14,6 +13,7 @@ const register = require('./routes/register');
 const card = require('./routes/card');
 const logout = require('./routes/logout');
 const admin = require('./routes/admin');
+const email = require('./routes/email');
 
 //setup
 const user = require('./models/user');
@@ -34,19 +34,6 @@ const sessionConfig = {
 auth.setup();
 const app = express();
 
-//middleware for checking group
-var needsGroup = function (group) {
-  return [
-    passport.authenticate('local'),
-    function (req, res, next) {
-      if (req.user && req.user.group === group)
-        next();
-      else
-        res.send(401, 'Unauthorized');
-    },
-  ];
-};
-
 //middleware
 app.use(session(sessionConfig));
 app.use(bodyParser.json());
@@ -62,6 +49,7 @@ app.use('/teams', teams);
 app.use('/card', card);
 app.use('/logout', logout);
 app.use('/admin', admin);
+app.use('/email', email);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));

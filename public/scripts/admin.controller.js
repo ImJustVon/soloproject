@@ -35,4 +35,10 @@ function AdminController($http) {
       console.log(ctrl.card);
     });
   };
+
+  ctrl.sendEmails = function () {
+    $http.get('/email').then(function (response) {
+      console.log(response);
+    });
+  };
 }

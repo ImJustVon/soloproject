@@ -6,6 +6,7 @@
     <button class="btn btn-danger noprint" ng-click="admin.deleteCard(admin.cardsArray[$index].id)">Delete</button>
   </li>
 </ul>
+<button ng-click="admin.sendEmails()">Send</button>
 <div id="card-preview" class="well">
     <table ng-style="{'color': admin.card.color2}">
       <tr>
