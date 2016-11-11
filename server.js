@@ -34,6 +34,18 @@ const sessionConfig = {
 auth.setup();
 const app = express();
 
+//middleware for checking group
+var needsGroup = function (group) {
+  return [
+    function (req, res, next) {
+      if (req.user && req.user.group === group)
+        next();
+      else
+        res.send(401, 'Unauthorized');
+    },
+  ];
+};
+
 //middleware
 app.use(session(sessionConfig));
 app.use(bodyParser.json());
@@ -48,7 +60,7 @@ app.use('/register', register);
 app.use('/teams', teams);
 app.use('/card', card);
 app.use('/logout', logout);
-app.use('/admin', admin);
+app.use('/admin', needsGroup('admin'), admin);
 app.use('/email', email);
 
 app.get('/', function (req, res) {
