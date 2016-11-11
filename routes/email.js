@@ -2,8 +2,11 @@ const router = require('express').Router();
 const passport = require('passport');
 const pool = require('../db/connection');
 const nodemailer = require('nodemailer');
+require('dotenv').config({ path: './aws.env' });
 
-var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+var password = process.env.email_pass;
+
+var transporter = nodemailer.createTransport('smtps://vaughnprosser%40gmail.com:' + password + '@smtp.gmail.com');
 
 router.get('/', function (req, res) {
     console.log('Got a request');
@@ -22,8 +25,8 @@ router.get('/', function (req, res) {
                 from: '"Vaughn" <vaughnprosser@gamil.com>', // sender address
                 to: result.rows[0].emailaddress, // list of receivers
                 subject: 'Register', // Subject line
-                text: 'Register', // plaintext body
-                html: '<a href="localhost:3000/register?token=' + result.rows[0].token + '">register</a>', // html body
+                text: 'register', // plaintext body
+                html: '<div><a href="http://localhost:3000/register?token=' + result.rows[0].token + '">register</a></div>', // html body
               };
 
             // send mail with defined transport object
