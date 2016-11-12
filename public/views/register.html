@@ -3,16 +3,22 @@
   <div class="form-group row">
     <label class="control-label col-xs-offset-1 col-xs-2">Username:</label>
     <div class="col-xs-8">
-      <input class="form-control" type="text" ng-model="register.username">
+      <input class="form-control" type="text" ng-model="register.data.username">
     </div>
   </div>
   <div class="form-group row">
     <label class="control-label col-xs-offset-1 col-xs-2">Password:</label>
     <div class="col-xs-8">
-      <input class="form-control" type="password" ng-model="register.password">
+      <input class="form-control" type="password" ng-model="register.data.password">
     </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-xs-offset-1 col-xs-2">Registration Code:</label>
+  <div class="col-xs-8">
+    <input class="form-control" type="text" ng-model="register.data.token">
   </div>
   <div class="col-xs-offset-3 col-xs-10">
     <button type="submit" class="btn btn-primary">Register</button>
   </div>
+</div>
 </form>

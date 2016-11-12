@@ -9,8 +9,9 @@ function RegisterController($http, $location) {
   ctrl.register = function () {
     console.log('registering new user');
     $http.post('/register', {
-      username: ctrl.username,
-      password: ctrl.password,
+      username: ctrl.data.username,
+      password: ctrl.data.password,
+      token: ctrl.data.token,
     }).then(function () {
       $location.path('/home');
     }, function (error) {

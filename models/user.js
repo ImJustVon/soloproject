@@ -26,7 +26,28 @@ function findByUsername(username) {
   });
 }
 
-
+// //checks to see if the token is valid
+// function checkToken(token) {
+//   return new Promise(function (resolve, reject) {
+//     pool.connect(function (err, client, done) {
+//       if (err) {
+//         done();
+//         return reject(err);
+//       }
+//
+//       client.query('SELECT id FROM email WHERE token=$1',
+//       [token],
+//       function (err, result) {
+//         done();
+//         if (err) {
+//           reject(err);
+//         }
+//
+//         resolve(result.rows[0]);
+//       });
+//     });
+//   });
+// }
 
 // find by id
 function findById(id) {
@@ -52,7 +73,7 @@ function findById(id) {
 }
 
 // create
-function create(username, password) {
+function create(username, password, id) {
   return new Promise(function (resolve, reject) {
     bcrypt.hash(password, SALT_ROUNDS, function (err, hash) {
       if (err) {
@@ -66,8 +87,8 @@ function create(username, password) {
           return reject(err);
         }
 
-        client.query('INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *',
-                     [username, hash],
+        client.query('INSERT INTO users (username, password, email_id) VALUES ($1, $2, $3) RETURNING *',
+                     [username, hash, id],
                      function (err, result) {
                       done();
                       if (err) {
