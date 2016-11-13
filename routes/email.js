@@ -23,10 +23,10 @@ router.get('/', function (req, res) {
 
             var mailOptions = {
                 from: '"Vaughn" <vaughnprosser@gamil.com>', // sender address
-                to: result.rows[0].emailaddress, // list of receivers
+                to: result.rows[1].emailaddress, // list of receivers
                 subject: 'Register', // Subject line
-                text: 'Go to Crank Sisters Tradding Card and make an account your registration code is ' + result.rows[0].token + ' and the link is here', // plaintext body
-                html: '<div><p>Go to Crank Sisters Tradding Card and make an account your registration code is' + result.rows[0].token + 'and the link is <a href="http://localhost:3000">here</a></p></div>', // html body
+                text: 'Go to Crank Sisters Tradding Card and make an account your registration code is ' + result.rows[1].token + ' and the link is here', // plaintext body
+                html: '<div><p>Go to Crank Sisters Tradding Card and make an account your registration code is ' + result.rows[1].token + ' and the link is <a href="http://192.168.1.10:3000">here</a></p></div>', // html body
               };
 
             // send mail with defined transport object
