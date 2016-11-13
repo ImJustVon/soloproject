@@ -25,6 +25,29 @@ var checkToken = function (token) {
   });
 };
 
+var deleteToken = function (token) {
+  return new Promise(function (resolve, reject) {
+    pool.connect(function (err, client, done) {
+      if (err) {
+        done();
+        return reject(err);
+      }
+
+      client.query('SELECT * FROM email WHERE token=$1',
+      [token],
+      function (err, result) {
+        console.log('finished with query');
+        done();
+        if (err) {
+          reject(err);
+        }
+
+        resolve(result.rows[0].id);
+      });
+    });
+  });
+};
+
 router.post('/', function (req, res) {
     console.log('registering new user');
     console.log();
