@@ -25,35 +25,31 @@ var checkToken = function (token) {
   });
 };
 
-var deleteToken = function (token) {
-  return new Promise(function (resolve, reject) {
-    pool.connect(function (err, client, done) {
-      if (err) {
-        done();
-        return reject(err);
-      }
-
-      client.query('SELECT * FROM email WHERE token=$1',
-      [token],
-      function (err, result) {
-        console.log('finished with query');
-        done();
-        if (err) {
-          reject(err);
-        }
-
-        resolve(result.rows[0].id);
-      });
-    });
-  });
-};
+// var deleteToken = function (token) {
+//   return new Promise(function (resolve, reject) {
+//     pool.connect(function (err, client, done) {
+//       if (err) {
+//         done();
+//         return reject(err);
+//       }
+//
+//       client.query('UPDATE email SET emailaddress=$1, token=NULL WHERE token=$2',
+//       [token],
+//       function (err, result) {
+//         console.log('finished with query');
+//         done();
+//         if (err) {
+//           reject(err);
+//         }
+//
+//         resolve(result.rows[0].id);
+//       });
+//     });
+//   });
+// };
 
 router.post('/', function (req, res) {
-    console.log('registering new user');
-    console.log();
-    console.log('about to check token');
     checkToken(req.body.token).then(function (id) {
-      console.log('token was checked ', id);
       User.create(req.body.username, req.body.password, id).then(function () {
         res.sendStatus(201);
       }).catch(function (err) {
